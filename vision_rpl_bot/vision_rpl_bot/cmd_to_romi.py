@@ -13,21 +13,10 @@ class RomiSubscriber(Node):
 
     def __init__(self):
         super().__init__('cmd_romi_subscriber')
-        self.subscription = self.create_subscription(Twist,'cmd_vel',self.cmd_to_pwm_callback,10)
-        #self.subscription = self.create_subscription(Int16, '/romi', self.listener_callback, 10)
-        self.subscription = self.create_subscription(Joy, 'joy', self.cmd_to_color_callback, 10)
+        self.subscription = self.create_subscription(Joy, 'joy', self.cmd_to_romi_callback, 10)
  
         
- 
-    
-    def cmd_to_pwm_callback(self, msg):
-        mx = int(msg.linear.x*100*400/70)
-        mz = int(msg.angular.z*100*400/40)
-        #print(mx,mz)
-      
-        #a_star.motors(mx,mz)
-        
-    def cmd_to_color_callback(self, msg):
+    def cmd_to_romi_callback(self, msg):
         #print(msg.buttons)
         #print(msg.axes)
         mx = int(msg.axes[1]*400)
