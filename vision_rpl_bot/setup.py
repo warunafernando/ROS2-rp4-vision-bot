@@ -22,6 +22,7 @@ setup(
         'console_scripts': [
             'publisher_node = vision_rpl_bot.publisher:main',
             'subscriber_node = vision_rpl_bot.subscriber:main',
+            'computer_subscriber_node = vision_rpl_bot.computer_subscriber:main'
         ],
     },
 )

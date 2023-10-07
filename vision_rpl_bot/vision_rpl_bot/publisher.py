@@ -18,7 +18,7 @@ class MinimalPublisher(Node):
         msg.data = self.iterator
         self.publisher_.publish(msg)
         self.get_logger().info('Publishing: "%s"' % msg.data)
-        self.iterator += 10
+        self.iterator += 1
 
 
 def main(args=None):
