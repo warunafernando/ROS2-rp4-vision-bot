@@ -22,7 +22,7 @@ class RomiSubscriber(Node):
     def cmd_to_pwm_callback(self, msg):
         mx = int(msg.linear.x*100*400/70)
         mz = int(msg.angular.z*100*400/40)
-        #print(mx,mz)
+        print(mx,mz)
       
         a_star.motors(mx,mz)
         
