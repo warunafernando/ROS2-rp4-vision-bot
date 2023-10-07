@@ -25,11 +25,6 @@ class RomiSubscriber(Node):
         a_star.motors(mx,mz)
         a_star.leds(msg.buttons[1],msg.buttons[3],msg.buttons[0])
         
-        
-    #def listener_callback(self, msg):
-        #self.get_logger().info('I heard: "%s"' % msg.data)
-        
-        
 
 
 def main(args=None):
