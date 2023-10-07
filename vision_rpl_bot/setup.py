@@ -24,6 +24,7 @@ setup(
             'subscriber_rpi_node = vision_rpl_bot.subscriber:main',
             'cmd_vel_to_pwm_node = vision_rpl_bot.cmd_to_pwm_driver:main',
             'cmd_to_romi_node = vision_rpl_bot.cmd_to_romi:main',
+            'romi_to_cmd_node = vision_rpl_bot.Romi_to_cmd:main'
         ],
     },
 )

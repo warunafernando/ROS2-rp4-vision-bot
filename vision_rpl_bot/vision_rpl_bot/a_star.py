@@ -17,17 +17,23 @@ class AStar:
     #
     # A delay of 0.0001 (100 us) after each write is enough to account
     # for the worst-case situation in our example code.
-
-    self.bus.write_byte(20, address)
-    time.sleep(0.0001)
-    byte_list = [self.bus.read_byte(20) for _ in range(size)]
+    try:
+      self.bus.write_byte(20, address)
+      time.sleep(0.0001)
+      byte_list = [self.bus.read_byte(20) for _ in range(size)]
+    except:
+      print('I2C bus WR error')
+      byte_list = [0,0]
+      
     return struct.unpack(format, bytes(byte_list))
 
   def write_pack(self, address, format, *data):
     data_array = list(struct.pack(format, *data))
-    self.bus.write_i2c_block_data(20, address, data_array)
-    print(address, data_array)
-
+    try:
+      self.bus.write_i2c_block_data(20, address, data_array)
+      #print(address, data_array)
+    except:
+      print("I2C bus W error")
 
   def leds(self, red, yellow, green):
     self.write_pack(0, 'BBB', red, yellow, green)
@@ -41,7 +47,7 @@ class AStar:
   def read_buttons(self):
     return self.read_unpack(3, 3, "???")
 
-  def read_battery_millivolts(self):
+  def read_battery_millivolts(self): # read voltage
     return self.read_unpack(10, 2, "H")
 
   def read_analog(self):
