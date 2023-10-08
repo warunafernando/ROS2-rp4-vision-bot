@@ -19,11 +19,13 @@ class AStar:
     # for the worst-case situation in our example code.
     try:
       self.bus.write_byte(20, address)
-      time.sleep(0.0001)
-      byte_list = [self.bus.read_byte(20) for _ in range(size)]
     except:
       print('I2C bus WR error')
-      byte_list = [0,0]
+      byte_list = [0,0,0,0]
+    time.sleep(0.0001)
+    byte_list = [self.bus.read_byte(20) for _ in range(size)]
+
+      
       
     return struct.unpack(format, bytes(byte_list))
 
@@ -55,6 +57,10 @@ class AStar:
 
   def read_encoders(self):
     return self.read_unpack(39, 4, 'hh')
+  
+  def read_pose_coordinates(self):
+    x, y, theta=self.read_unpack(17,12,"fff")
+    return (x,y,theta)
 
   def test_read8(self):
     self.read_unpack(0, 8, 'cccccccc')

@@ -17,10 +17,14 @@ class RomiPublisher(Node):
     def timer_callback(self):
         voltage = (a_star.read_battery_millivolts()[0])
         encoder=a_star.read_encoders()
-        encoder_r=c=encoder[0]
-        encoder_l=c=encoder[1]
-    
-        print(encoder)
+        encoder_r=encoder[0]
+        encoder_l=encoder[1]
+        pose_coor=a_star.read_pose_coordinates()
+        x=pose_coor[0]
+        y=pose_coor[1]
+        theta=pose_coor[2]
+        #print(pose_coor)
+        #print(encoder)
         #print(voltage)
         msg = Int16MultiArray()
         if (voltage > 0 and voltage < 10000):
