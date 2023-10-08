@@ -24,7 +24,7 @@ class RomiSubscriber(Node):
         greenButton = (msg.buttons[1])
         a_star.leds(redButton, greenButton, orangeButton)
         print(mx,mz)
-        a_star.motors(mx,mz)
+        a_star.motors(mx+mz,mx-mz)
         
 
 
