@@ -7,12 +7,13 @@ a_star = AStar()
 import time
 
 
+
 class RomiSubscriber(Node):
 
     def __init__(self):
         super().__init__('cmd_romi_subscriber')
         self.subscription = self.create_subscription(Joy, 'joy', self.cmd_to_romi_callback, 10)
-        
+
  
         
     def cmd_to_romi_callback(self, msg):
@@ -30,6 +31,7 @@ class RomiSubscriber(Node):
 
 def main(args=None):
     rclpy.init(args=args)
+    
 
     romi_subscriber = RomiSubscriber()
 
